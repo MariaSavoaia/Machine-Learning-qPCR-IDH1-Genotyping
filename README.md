@@ -144,6 +144,6 @@ The last step puts the three classifiers next to the absolute thresholds, using 
 * **The dependence of the background on concentration is empirical.** It comes from a regression on the real wild-type samples and has no mechanistic explanation here (see above).
 * **The model is a simplification of the assay.** It has no batch or plate effects and no replicate wells, the efficiency is constant over the cycles and the same in both assays, the noise is Gaussian and independent, and only a heterozygous R132H mutation is simulated, with the VAF spread described by an assumed Beta distribution.
 * **The detection limits are for one reaction.** The limit of detection is estimated from 50 replicates per VAF point, on a single reaction with 20 ng of input DNA, and replicate reactions would lower it.
-* **The headline accuracies come from a single simulated dataset.** The classifiers are compared on one random draw of the model (one seed), so small differences, such as the difference of 9 errors between the GMM (36) and the logistic regression (27), should not be over-interpreted. Repeating the whole pipeline across many seeds would give a spread for each accuracy.
+* **The headline accuracies come from a single simulated dataset.** The classifiers are compared on one random draw of the model (one seed), so small differences should not be over-interpreted. Repeating the whole pipeline across many seeds would give a spread for each accuracy.
 
 [Check out my LinkedIn profile](https://www.linkedin.com/in/maria-s%C4%83voaia-846132336)
