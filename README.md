@@ -27,9 +27,9 @@ The model reproduces the mechanism that produces these Ct values, simulating one
 
 **2. The mutant-specific signal.** In each cycle, PCR multiplies the amount of amplicon by (1 + E), where E is the efficiency (between 0 and 1). The mutant assay can only amplify mutant copies, which make up a fraction VAF of the template, while the wild-type assay amplifies the rest, 1 − VAF; so a sample with a given VAF reaches the threshold in the mutant assay with a delay of ln(1/VAF - 1) / ln(1 + E) cycles relative to a heterozygous sample (VAF = 0.5). A reaction crosses the detection threshold when its amplicon reaches a fixed amount, so the number of cycles needed is lower when there is more template, and the gap between the two assays is:
 
-$$\Delta Ct_{signal} = \Delta Ct_{pure} - \frac{\operatorname{logit}(VAF)}{\ln(1+E)} + \varepsilon_{signal}, \qquad \varepsilon_{signal} \sim \mathcal{N}(0, \sigma_{signal}^2)$$
+$$\Delta Ct_{signal} = \Delta Ct_{pure} - \frac{\mathrm{logit}(VAF)}{\ln(1+E)} + \varepsilon_{signal}, \qquad \varepsilon_{signal} \sim \mathcal{N}(0, \sigma_{signal}^2)$$
 
-where $\operatorname{logit}(VAF) = \ln\frac{VAF}{1-VAF}$. For a heterozygous sample (VAF = 0.5) the logit is 0, so $\Delta Ct_{pure}$ is the delta_ct of a pure heterozygous mutant. The slope of delta_ct against logit(VAF) is therefore −1/ln(1 + E) ≈ −1.54 for E = 92%. Assumptions: both assays have the same, constant efficiency in every cycle and sample, and the noise is Gaussian and independent of VAF.
+where $\mathrm{logit}(VAF) = \ln\frac{VAF}{1-VAF}$. For a heterozygous sample (VAF = 0.5) the logit is 0, so $\Delta Ct_{pure}$ is the delta_ct of a pure heterozygous mutant. The slope of delta_ct against logit(VAF) is therefore −1/ln(1 + E) ≈ −1.54 for E = 92%. Assumptions: both assays have the same, constant efficiency in every cycle and sample, and the noise is Gaussian and independent of VAF.
 
 **3. The background signal.** Wild-type samples are not “empty” in the mutant assay: it produces late, non-specific amplification, which we model as a background level that also bounds the signal of low-VAF mutants. We found in the real wild-type samples that this level depends linearly on the logarithm of the DNA concentration:
 
