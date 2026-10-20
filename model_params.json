@@ -1,0 +1,49 @@
+{
+  "fragment_level": {
+    "gmm_mutant_mean": 1.1415,
+    "gmm_mutant_var": 2.755,
+    "gmm_wt_mean": 15.2465,
+    "gmm_wt_var": 9.5187,
+    "gmm_mutant_weight": 0.1891,
+    "gmm_wt_weight": 0.8109,
+    "kmeans_mutant_center": 1.1423,
+    "kmeans_wt_center": 15.2479
+  },
+  "boundaries_delta_ct": {
+    "gmm": 5.767,
+    "kmeans": 8.1951
+  },
+  "logistic_regression": {
+    "coef_ct_wt": -0.6584,
+    "coef_ct_mut": 0.8384,
+    "intercept": -10.563,
+    "boundary_intercept": 12.5988,
+    "boundary_slope": 0.7853
+  },
+  "absolute_thresholds": {
+    "ct_wt_failure": 38.0,
+    "ct_mut_positive": 34.0
+  },
+  "simulation_calibration": {
+    "pure_mutant_delta_ct": 1.1415,
+    "background_mean": 15.2465,
+    "background_std": 3.0197,
+    "conc_slope": -3.8582,
+    "conc_ref": 67.01,
+    "quality_noise_std": 3.6243,
+    "signal_noise_std": 1.6598,
+    "conc_min": 13,
+    "conc_max": 412,
+    "ct_max": 50.0,
+    "real_wt_std": 3.0852,
+    "real_mut_std": 1.6598
+  },
+  "patient_level": {
+    "gmm_mutant_mean": 1.2689,
+    "gmm_mutant_var": 0.7879,
+    "gmm_wt_mean": 16.3968,
+    "gmm_wt_var": 11.9577,
+    "gmm_mutant_weight": 0.1428,
+    "gmm_wt_weight": 0.8572
+  }
+}
