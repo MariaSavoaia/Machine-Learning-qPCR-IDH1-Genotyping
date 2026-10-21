@@ -17,8 +17,6 @@ All results are for the simulated model described below (10% prevalence, 5,000 f
 * **The best decision boundary depends on the prevalence.** It moves from delta_ct ≈ 6.7 at 50% prevalence to ≈ 4.5 at 1%, with sensitivity falling from 0.997 to 0.93, so thresholds set on a cohort with a skewed prevalence do not transfer to the general population.
 * **The detection limit is set by the assay's background, not by the amount of DNA.** A single reaction reaches 95% sensitivity only at VAF ≈ 0.2, more than 300 times above the physical limit (VAF ≈ 0.0006, where there are only three to four mutant molecules in the tube).
 
-The real patient cohort (Project 1) is small, and the prevalence of the mutation in the glioma samples tested is skewed compared to the real-world prevalence. Therefore it cannot be used by itself to measure the algorithms’ performance, or to set robust decision thresholds that would hold in a general population. We used it to calibrate most of the parameters of the model above, and this repository runs on synthetic samples, generated to complement the real data. Because their true genotype and VAF are known, we can measure accuracy, sensitivity and detection limits, and we can simulate the decision boundary for different parameter sets (for example at the real-world prevalence of the mutation, set by default at 10%).
-
 
 
 ## Modeling the PCR reactions
@@ -47,6 +45,8 @@ $$\Delta Ct = \min(\Delta Ct_{signal},\ \Delta Ct_{background})$$
 
 Wild-type samples have no mutant-specific signal ($\Delta Ct_{signal} = +\infty$), so they always report the background. A mutant with a high VAF is dominated by the signal, and a mutant with a very low VAF cannot be told apart from the background, which is what creates the detection limit. The Ct values are then built as $Ct_{wt} = 25 + \varepsilon_{quality}$ (an arbitrary reference baseline plus sample quality noise, independent of concentration) and $Ct_{mut} = Ct_{wt} + \Delta Ct$. We simulate $Ct_{wt}$ independently of VAF, so the whole effect of VAF is carried by delta_ct. A reaction that has not crossed the threshold within the 50 cycles of a run is right-censored: its Ct is set to 50 and flagged as undetermined, instead of being dropped.
 
+We also generate a VAF sweep, a dilution-series-style dataset: a fixed grid of known VAFs from 1e-5 to 0.5, with 50 replicates each. This is used for regressions, sensitivity analyses and Poisson sampling of mutant molecules.
+
 **Where the parameters come from.** E, the Beta shape and the Ct_wt baseline are assumptions, the prevalence is a simulation choice, and the remaining parameters are calibrated on the real data.
 When the generator is run, the parameters can be taken from the defaults (the calibrated values listed below), loaded from the calibration that Project 1 saved in model_params.json, or changed manually for individual parameters, which overrides either source. The values actually used are saved in synthetic_params.json, which every other script reads.
 
@@ -66,7 +66,7 @@ When the generator is run, the parameters can be taken from the defaults (the ca
 | $Ct_{wt}$ baseline, $\sigma_{quality}$ | 25, 3.62 | Arbitrary reference point; residual standard deviation of Ct_wt in the real data |
 | Maximum cycles | 50 | Length of one run |
 
-Fragments are also analyzed with on a VAF sweep, a dilution-series-style dataset: a fixed grid of known VAFs from 1e-5 to 0.5, with 50 replicates each. This is used for regressions, sensitivity analyses and Poisson sampling of mutant molecules.
+
 
 ## Analyses
 
