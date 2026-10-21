@@ -22,6 +22,7 @@ PARAMS = {
     "background_std": 3.0197,         #WT std after removing the concentration-explained part
     "conc_slope": -3.8582,          #delta_ct vs log10 concentration, WT only
     "conc_ref": 67.01,               #concentration at which the background equals background_mean
+    "ct_wt_baseline": 25.6793,         #mean of ct_wt
     "quality_noise_std": 3.6243,      #residual std of ct_wt
     "signal_noise_std": 1.6598,       #real Mut cluster std
     "conc_min": 13, "conc_max": 412,
